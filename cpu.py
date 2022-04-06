@@ -7,4 +7,5 @@ class Cpu(Player):
 
     def choose_gesture(self):
         self.current_gesture = (random.choice(self.gestures))
+        print(f"CPU chose {self.current_gesture}")
         

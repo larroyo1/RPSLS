@@ -3,7 +3,7 @@ from cpu import Cpu
 from game import Game
 
 game = Game()
-game.choose_winner('Rock', 'Scissors')
+game.display_welcome()
 
 
 
