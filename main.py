@@ -1,9 +1,9 @@
 from player import Player 
 from cpu import Cpu
+from game import Game
 
-player = Cpu('Luis')
-player.choose_gesture()
-
+game = Game()
+game.choose_winner('Rock', 'Scissors')
 
 
 
