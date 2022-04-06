@@ -1,7 +1,7 @@
 #reset self.current_gesture after each turn...
 class Player:
-   def __init__(self):
-      self.name = None
+   def __init__(self, name):
+      self.name = name
       self.score = 0
       self.gestures = ["Rock","Paper","Scissors","Lizard","Spock"]
       self.current_gesture = None
@@ -15,14 +15,14 @@ class Player:
          print("That is not a valid repsonse.")
          self.choose_gesture()
 
-   
+   # getting used twice, so i made this function 
    def choose_something(self, list, category):
       for item in list:
          print(f'{list.index(item)}: {item}')
 
       while True:
          try:
-            user_input = int(input(f'Enter a number to choose your {category} :'))
+            user_input = int(input(f'{self.name}, enter a number to choose your {category} :'))
             break
          except ValueError:
             print("That is not a valid repsonse.")
