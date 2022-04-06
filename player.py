@@ -19,7 +19,6 @@ class Player:
          else:
             if user_input <= len(self.gestures) - 1:
                self.current_gesture = self.gestures[int(user_input)]
-               print(f"You chose {self.gestures[int(user_input)]}")
             else:
                print("That is not a valid repsonse.")
                self.choose_gesture()
