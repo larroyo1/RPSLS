@@ -8,7 +8,6 @@ game.run_game()
 
 
 
-
 # Player
     # Variables
     # name
