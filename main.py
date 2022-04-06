@@ -1,6 +1,7 @@
 from player import Player 
+from cpu import Cpu
 
-player = Player('Luis')
+player = Cpu('Luis')
 player.choose_gesture()
 
 
