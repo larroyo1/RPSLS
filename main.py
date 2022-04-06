@@ -3,7 +3,8 @@ from cpu import Cpu
 from game import Game
 
 game = Game()
-game.display_welcome()
+game.run_game()
+
 
 
 
