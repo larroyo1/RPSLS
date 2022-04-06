@@ -10,15 +10,17 @@ class Player:
       for gesture in self.gestures:
          print(f'{self.gestures.index(gesture)}: {gesture}')
 
-      user_input = input('Choose a gesture by number :')
-      #;need to check if the user enters a letter...
-      for gesture in self.gestures:
-         index = self.gestures.index(gesture)
-         if int(user_input) == index:
-            self.current_gesture = self.gestures[int(user_input)]
-            print(f"You chose {self.gestures[int(user_input)]}")
+      while True:
+         try:
+            user_input = int(input('Choose a gesture by number :'))
+         except ValueError:
+            print("That is not a valid repsonse.")
+            continue
+         else:
+            if user_input <= len(self.gestures) - 1:
+               self.current_gesture = self.gestures[int(user_input)]
+               print(f"You chose {self.gestures[int(user_input)]}")
+            else:
+               print("That is not a valid repsonse.")
+               self.choose_gesture()
             break
-      if self.current_gesture == None:
-         print("That is not a valid repsonse.")
-         self.choose_gesture()
-       
