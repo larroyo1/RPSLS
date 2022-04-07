@@ -1,13 +1,14 @@
 import unittest 
 from gesture import Gesture
 
-class TestPlayer(unittest.TestCase):
+class TestGesture(unittest.TestCase):
     
     def test_instance(self): 
         gesture = Gesture('Rock')
 
         self.assertIsInstance(gesture, Gesture)
         self.assertEqual(gesture.name, 'Rock')
+        self.assertEqual(gesture.verb, None)
     
     def test_determine_verb(self):
         gesture1 = Gesture('Rock')
@@ -20,7 +21,6 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(gesture1.verb, None)
         gesture1.determine_verb('Paper')
         self.assertEqual(gesture1.verb, None)
-        
         
 if __name__ == '__main__': 
     unittest.main()
