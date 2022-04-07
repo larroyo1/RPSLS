@@ -1,14 +1,24 @@
 #reset self.current_gesture after each turn...
+from gesture import Gesture
+import getpass
 class Player:
    def __init__(self, name):
       self.name = name
       self.score = 0
-      self.gestures = ["Rock","Paper","Scissors","Lizard","Spock"]
+      self.gestures = [Gesture("Rock"), Gesture("Paper"), Gesture("Scissors"), Gesture("Lizard"), Gesture("Spock")]
       self.current_gesture = None
       self.characters = ['Sheldon','Leonard','Penny','Amy Farrah Fowler','Bernadette','Wolowitz']
         
    def choose_gesture(self):
-      user_input = self.choose_something(self.gestures, "gesture")
+      for item in self.gestures:
+         print(f'{self.gestures.index(item)}: {item.name}')
+      while True:
+         try:
+            user_input = int(getpass.getpass(prompt=f'{self.name}, enter a number to choose your gesture :' ))
+            break
+         except ValueError:
+            print("That is not a valid repsonse.")
+            continue
       if user_input <= len(self.gestures) - 1:
          self.current_gesture = self.gestures[int(user_input)]
       else:

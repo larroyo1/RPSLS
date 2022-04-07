@@ -20,8 +20,9 @@ class Game:
             self.display_round_info()
             self.player_one.choose_gesture()
             self.player_two.choose_gesture()
-            self.choose_winner(self.player_one.current_gesture, self.player_two.current_gesture)
-            
+            print(f'{self.player_one.name} chose {self.player_one.current_gesture.name} and {self.player_two.name} chose {self.player_two.current_gesture.name}')
+            self.determine_winner()
+
     def choose_winner(self, player_one_choice, player_two_choice):
             if player_one_choice == 'Rock' and player_two_choice in ['Paper', 'Spock']:
                 #self.display_round_outcome()
@@ -55,6 +56,22 @@ class Game:
                 #self.display_round_outcome() 
                 print(f'{self.player_one.name} wins the round.')
                 self.player_one.score += 1
+    
+    def determine_winner(self):
+        self.player_one.current_gesture.determine_verb(self.player_two.current_gesture.name)
+        self.player_two.current_gesture.determine_verb(self.player_one.current_gesture.name)
+        if self.player_one.current_gesture.name == self.player_two.current_gesture.name:
+            print(f'Both players chose {self.player_one.current_gesture.name}. DRAW.')
+        elif self.player_one.current_gesture.verb == None:
+            print(f'{self.player_two.current_gesture.name} {self.player_two.current_gesture.verb} {self.player_one.current_gesture.name}!')
+            print(f'{self.player_two.name} wins the round!')
+            self.player_two.score += 1
+        elif self.player_two.current_gesture.verb == None:
+            print(f'{self.player_one.current_gesture.name} {self.player_one.current_gesture.verb} {self.player_two.current_gesture.name}!')
+            print(f'{self.player_one.name} wins the round!')
+            self.player_one.score += 1
+    
+
 
     def player_vs_cpu(self):
         self.player_one.choose_character()
@@ -65,8 +82,8 @@ class Game:
             self.display_round_info()
             self.player_one.choose_gesture()
             self.player_two.choose_gesture()            
-            print(f'{self.player_one.name} chose {self.player_one.current_gesture} and {self.player_two.name} chose {self.player_two.current_gesture}')
-            self.choose_winner(self.player_one.current_gesture, self.player_two.current_gesture)
+            print(f'{self.player_one.name} chose {self.player_one.current_gesture.name} and {self.player_two.name} chose {self.player_two.current_gesture.name}')
+            self.determine_winner()
             
             
     def display_score(self): 
@@ -98,8 +115,8 @@ class Game:
             print(f'{self.player_two.name} wins the game!')
     #sorry, i couldn't help myself...
    # def display_round_outcome(self):
-        # print(f'{self.player_one.name} chose {self.player_one.current_gesture} and {self.player_two.name} chose {self.player_two.current_gesture}.')
-        # if self.player_one.current_gesture in ["Rock", "Scissors"] and self.player_two.current_gesture in ["Rock", "Scissors"]:
+        # print(f'{self.player_one.name} chose {self.player_one.current_gesture.name.name} and {self.player_two.name} chose {self.player_one.current_gesture.name}.')
+        # if self.player_one.current_gesture.name.name in ["Rock", "Scissors"] and self.player_one.current_gesture.name in ["Rock", "Scissors"]:
         #     print("Rock CRUSHES Scissors")
         #this is going to get long. 
         # Scissors cuts Paper 
