@@ -1,7 +1,5 @@
 from player import Player 
 from cpu import Cpu
-import time
-import sys
 
 class Game:
     def __init__(self):
@@ -68,12 +66,5 @@ class Game:
             print(f'{self.player_one.name} wins the game!')
         else: 
             print(f'{self.player_two.name} wins the game!')
-
-    def print_slow(str):
-        for letter in str:
-            sys.stdout.write(letter)
-            sys.stdout.flush()
-            time.sleep(0.025)
-        time.sleep(.5)
       
     
