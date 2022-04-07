@@ -1,6 +1,7 @@
 from player import Player 
 from cpu import Cpu
 import time
+import sys
 
 class Game:
     def __init__(self):
@@ -10,8 +11,8 @@ class Game:
 
     def display_welcome(self):
         self.game_mode = input('Welcome to RPSLS! Please enter 1 for single player or 2 for multiplayer.')
-
-    def player_vs_player(self):
+        
+    def game_flow(self):
         self.player_one.choose_character()
         self.player_two.characters.remove(self.player_one.name)
         self.player_two.choose_character()
@@ -37,20 +38,7 @@ class Game:
             print(f'{self.player_one.current_gesture.name} {self.player_one.current_gesture.verb} {self.player_two.current_gesture.name}!')
             print(f'{self.player_one.name} wins the round!')
             self.player_one.score += 1
-    
-    def player_vs_cpu(self):
-        self.player_one.choose_character()
-        self.player_two = Cpu('Player 2')
-        self.player_two.characters.remove(self.player_one.name)
-        self.player_two.choose_character()
-
-        while self.player_one.score < 2 and self.player_two.score < 2:
-            self.display_round_info()
-            self.player_one.choose_gesture()
-            self.player_two.choose_gesture()            
-            print(f'{self.player_one.name} chose {self.player_one.current_gesture.name} and {self.player_two.name} chose {self.player_two.current_gesture.name}')
-            self.determine_winner()
-            
+                
     def display_score(self): 
         print(f'{self.player_one.name} has {self.player_one.score} points and {self.player_two.name} has {self.player_two.score} points.')
      
@@ -60,17 +48,19 @@ class Game:
         print(f'{self.player_one.name}: {self.player_one.score} pts VS {self.player_two.name}: {self.player_two.score} pts.')
         round_number += 1
 
-    def run_game(self):
-        self.display_welcome()
-
+    def choose_game_mode(self):
         if self.game_mode == '1':
-            self.player_vs_cpu()
+            self.player_two = Cpu('Player 2')
         elif self.game_mode == '2':
-            self.player_vs_player()
+            pass
         else:
             print("That is not a valid response.")
             self.display_welcome()
-            
+    
+    def run_game(self):
+        self.display_welcome()
+        self.choose_game_mode()
+        self.game_flow()           
         self.display_winner()
         
     def display_winner(self):
@@ -78,5 +68,12 @@ class Game:
             print(f'{self.player_one.name} wins the game!')
         else: 
             print(f'{self.player_two.name} wins the game!')
-        
+
+    def print_slow(str):
+        for letter in str:
+            sys.stdout.write(letter)
+            sys.stdout.flush()
+            time.sleep(0.025)
+        time.sleep(.5)
+      
     

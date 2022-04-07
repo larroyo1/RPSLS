@@ -27,22 +27,18 @@ class Player:
          print("That is not a valid repsonse.")
          self.choose_gesture()
 
-   # getting used twice, so i made this function 
-   def choose_something(self, list, category):
-      for item in list:
-         print(f'{list.index(item)}: {item}')
+   def choose_character(self):
+      for item in self.characters:
+         print(f'{self.characters.index(item)}: {item}')
 
       while True:
          try:
-            user_input = int(input(f'{self.name}, enter a number to choose your {category} :'))
+            user_input = int(input(f'{self.name}, enter a number to choose your character :'))
             break
          except ValueError:
             print("That is not a valid repsonse.")
             continue
-      return user_input
 
-   def choose_character(self):
-      user_input = self.choose_something(self.characters, "character")
       if user_input <= len(self.characters) - 1:
          self.name = self.characters[int(user_input)]
       else:
